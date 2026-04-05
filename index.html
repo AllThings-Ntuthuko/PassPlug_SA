@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pass Matric the Smart Way - PassPlug</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #FFC107;
+            --yellow-dark: #FFB300;
+            --black: #000000;
+            --white: #FFFFFF;
+            --grey: #F5F5F5;
+            --dark-grey: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            border-bottom: 2px solid var(--yellow);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--black);
+        }
+
+        .logo span {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-grey);
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--yellow);
+        }
+
+        /* ── HERO SECTION ── */
+        .hero {
+            margin-top: 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, var(--white) 0%, var(--grey) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 193, 7, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(48px, 10vw, 80px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--yellow);
+        }
+
+        .hero-subtext {
+            font-size: clamp(18px, 4vw, 26px);
+            color: var(--dark-grey);
+            margin-bottom: 40px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin: 50px 0 50px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--yellow);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--dark-grey);
+            margin-top: 5px;
+        }
+
+        /* ── BUTTONS ── */
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-size: 14px;
+            font-weight: 900;
+            font-family: 'Montserrat', sans-serif;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background-color: var(--yellow);
+            color: var(--black);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--yellow-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 193, 7, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--yellow);
+            border: 2px solid var(--yellow);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+        }
+
+        /* ── GENERAL SECTIONS ── */
+        section {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(36px, 8vw, 60px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 40px;
+            letter-spacing: -1px;
+        }
+
+        h2 .highlight {
+            color: var(--yellow);
+        }
+
+        /* ── PAIN SECTION ── */
+        .pain {
+            background-color: var(--grey);
+            text-align: center;
+        }
+
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pain-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--yellow);
+            transition: all 0.3s ease;
+        }
+
+        .pain-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .pain-card p {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .pain-cta {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--yellow);
+            margin-top: 50px;
+            letter-spacing: 1px;
+        }
+
+        /* ── SOLUTION SECTION ── */
+        .solution {
+            background: linear-gradient(135deg, var(--yellow) 0%, #FFD54F 100%);
+            color: var(--black);
+            text-align: center;
+        }
+
+        .solution h2 {
+            color: var(--black);
+        }
+
+        .solution-box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 60px 50px;
+            border-radius: 12px;
+            margin: 50px auto;
+            max-width: 700px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .solution-box h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            color: var(--black);
+        }
+
+        .includes-list {
+            list-style: none;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .includes-list li {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 18px 0;
+            padding-left: 35px;
+            position: relative;
+        }
+
+        .includes-list li:before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        /* ── VALUE SECTION ── */
+        .value {
+            background-color: var(--black);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .value-text {
+            font-size: clamp(22px, 5vw, 32px);
+            font-weight: 700;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+            letter-spacing: 0.5px;
+        }
+
+        .value-text strong {
+            color: var(--yellow);
+            font-size: 1.1em;
+        }
+
+        /* ── CTA SECTION ── */
+        .cta {
+            text-align: center;
+            background-color: var(--grey);
+        }
+
+        .cta-price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(42px, 8vw, 72px);
+            font-weight: 900;
+            color: var(--yellow);
+            margin: 30px 0 40px 0;
+            letter-spacing: -1px;
+        }
+
+        .cta-text {
+            font-size: 18px;
+            color: var(--dark-grey);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ── URGENCY SECTION ─�� */
+        .urgency {
+            background: var(--yellow);
+            color: var(--black);
+            text-align: center;
+            padding: 50px 40px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .urgency p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        /* ── WHATSAPP STICKY ── */
+        .wa-sticky {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            z-index: 999;
+            box-shadow: 0 10px 35px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            animation: waFloat 3s ease-in-out infinite;
+        }
+
+        .wa-sticky:hover {
+            transform: scale(1.15);
+            box-shadow: 0 15px 45px rgba(37, 211, 102, 0.6);
+        }
+
+        .wa-sticky svg {
+            width: 35px;
+            height: 35px;
+            fill: white;
+        }
+
+        @keyframes waFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 50px 40px;
+            border-top: 2px solid var(--yellow);
+        }
+
+        footer p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        footer span {
+            color: var(--yellow);
+            font-weight: 700;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .hero {
+                margin-top: 120px;
+                min-height: 80vh;
+            }
+
+            .hero-stats {
+                gap: 30px;
+                margin: 40px 0;
+            }
+
+            .solution-box {
+                padding: 40px 25px;
+            }
+
+            .cta-price {
+                margin: 20px 0 30px 0;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            h2 {
+                margin-bottom: 30px;
+            }
+
+            .wa-sticky {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- WhatsApp Sticky Button -->
+    <a href="https://wa.me/27656063683?text=PASS" class="wa-sticky" target="_blank" title="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">PASS<span>PLUG</span></div>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#pain">Problem</a></li>
+            <li><a href="#solution">Solution</a></li>
+            <li><a href="#cta">Order</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>Pass Matric the <span class="highlight">Smart Way</span> 📚🔥</h1>
+            <p class="hero-subtext">Study strategies, exam hacks & proven methods for South African students 🇿🇦</p>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">13</div>
+                    <div class="stat-label">Subjects Covered</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">R49</div>
+                    <div class="stat-label">Starting Price</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">2025</div>
+                    <div class="stat-label">NSC Aligned</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24H</div>
+                    <div class="stat-label">Instant Delivery</div>
+                </div>
+            </div>
+
+            <a href="https://wa.me/27656063683?text=PASS" class="btn btn-primary" target="_blank">👉 Get the Study Pack (R49)</a>
+        </div>
+    </section>
+
+    <!-- Pain Section -->
+    <section class="pain" id="pain">
+        <h2><span class="highlight">Struggling</span> to Pass?</h2>
+        <div class="pain-grid">
+            <div class="pain-card">
+                <p>📖 Studying but not improving</p>
+            </div>
+            <div class="pain-card">
+                <p>⏰ Running out of time</p>
+            </div>
+            <div class="pain-card">
+                <p>😰 Feeling overwhelmed</p>
+            </div>
+        </div>
+        <div class="pain-cta">👉 You're not alone.</div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution" id="solution">
+        <h2>The Matric Survival Pack</h2>
+        <div class="solution-box">
+            <h3>What's Included:</h3>
+            <ul class="includes-list">
+                <li>Complete Study System</li>
+                <li>Exam Strategies & Hacks</li>
+                <li>Final Week Action Plan</li>
+                <li>Proven Techniques</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Value Section -->
+    <section class="value" id="value">
+        <h2>Why This <span class="highlight">Actually Works</span></h2>
+        <div class="value-text">
+            💡 You just accessed <strong>R150 worth of strategy</strong> — imagine what this complete pack will do for your matric results.
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="cta">
+        <h2>Get It <span class="highlight">Now</span></h2>
+        <p class="cta-text">Limited Time Offer — 2026 Matric Students Only</p>
+        <div class="cta-price">Only R49</div>
+        <div class="btn-group">
+            <a href="https://wa.me/27656063683?text=PASS" class="btn btn-primary" target="_blank">👉 DM "PASS" on WhatsApp</a>
+            <a href="#solution" class="btn btn-secondary">Learn More</a>
+        </div>
+    </section>
+
+    <!-- Urgency Section -->
+    <section>
+        <div class="urgency">
+            <p>⚠️ Limited to 2026 Matric Students Only — Stock Running Low</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 <span>PassPlug</span> — Pass Matric the Smart Way</p>
+        <p>Built for South African Matric Students 🇿🇦</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
